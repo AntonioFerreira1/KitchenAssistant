@@ -1,13 +1,13 @@
-package com.example.kitchenassistant.ui.notifications
+package com.example.kitchenassistant.ui.account
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class NotificationsViewModel : ViewModel() {
+class AccountViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+        value = "This is accounts Fragment"
     }
     val text: LiveData<String> = _text
 }

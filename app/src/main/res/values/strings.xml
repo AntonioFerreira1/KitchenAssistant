@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">KitchenAssistant</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_myRecipes">MyRecipes</string>
+    <string name="title_myProducts">MyProducts</string>
+    <string name="title_account">Account</string>
 </resources>
