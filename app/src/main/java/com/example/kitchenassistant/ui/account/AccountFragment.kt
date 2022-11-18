@@ -28,10 +28,10 @@ class AccountFragment : Fragment() {
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        /*val textView: TextView = binding.textNotifications
+        //val textView: TextView = bindin
         notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }*/
+            //textView.text = it
+        }
         return root
     }
 
