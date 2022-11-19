@@ -4,4 +4,15 @@
     <string name="title_myRecipes">MyRecipes</string>
     <string name="title_myProducts">MyProducts</string>
     <string name="title_account">Account</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="units">
+        <item>kg</item>
+        <item>grams</item>
+        <item>package</item>
+        <item>unit(s)</item>
+        <item>liters</item>
+        <item>ml</item>
+    </string-array>
 </resources>

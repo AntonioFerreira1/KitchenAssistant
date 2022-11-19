@@ -7,5 +7,5 @@ data class Product(
 )
 
 enum class Unit {
-    KILOGRAM, UNIT
+    GRAMS, KILOGRAM, UNIT, PACKAGE, LITERS, MILLILITERS
 }

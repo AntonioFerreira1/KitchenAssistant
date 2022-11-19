@@ -1,9 +1,11 @@
 package com.example.kitchenassistant.ui.myProducts
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -34,6 +36,14 @@ class MyProductsFragment : Fragment() {
         val root: View = binding.root
 
         setUpRecycleView()
+        setupSpinner()
+        binding.btAddProduct.setOnClickListener {
+            binding.llAddProductMenu.visibility = View.VISIBLE
+        }
+
+        binding.btCancel.setOnClickListener {
+            binding.llAddProductMenu.visibility = View.GONE
+        }
 
         return root
     }
@@ -43,7 +53,7 @@ class MyProductsFragment : Fragment() {
         _binding = null
     }
 
-    fun setUpRecycleView(){
+    private fun setUpRecycleView(){
         val adapter = ProductsAdapter(mutableListOf(
             Product("carne", 1, Unit.KILOGRAM),
             Product("peixe", 2, Unit.KILOGRAM)
@@ -53,5 +63,16 @@ class MyProductsFragment : Fragment() {
         rvProducts = binding.recyclerView
         rvProducts.layoutManager = LinearLayoutManager(context)
     }
-
+    
+    private fun setupSpinner(){
+        val spinnerItems = Unit.values().map { u -> u.name }
+        val spinner = binding.spUnitType
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            spinnerItems
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+    }
 }
