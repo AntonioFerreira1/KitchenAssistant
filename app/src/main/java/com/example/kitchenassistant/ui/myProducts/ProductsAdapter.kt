@@ -52,7 +52,7 @@ class ProductsAdapter(
         notifyItemInserted(products.size - 1)
     }
 
-    fun deleteProduct(product: Product) {
+    private fun deleteProduct(product: Product) {
         if (products.remove(product)) notifyDataSetChanged()
     }
 
