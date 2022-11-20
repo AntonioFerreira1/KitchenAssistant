@@ -10,7 +10,7 @@ import com.example.kitchenassistant.R
 import com.example.kitchenassistant.ui.Product
 
 class ProductsAdapter(
-    private val products: MutableList<Product>
+    var products: MutableList<Product>
 ) : RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>() {
 
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -40,6 +40,11 @@ class ProductsAdapter(
 
     override fun getItemCount(): Int {
         return products.size
+    }
+
+    fun setFilteredList(filteredList: MutableList<Product>){
+        this.products = filteredList
+        notifyDataSetChanged()
     }
 
     fun addProduct(product: Product) {
