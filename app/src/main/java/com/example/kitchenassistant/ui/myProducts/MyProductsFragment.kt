@@ -103,7 +103,7 @@ class MyProductsFragment : Fragment() {
         dialog: Dialog, actvProducts: AutoCompleteTextView, spinner: Spinner, etAmount: EditText
     ) {
         dialog.findViewById<Button>(R1.id.bt_confirm).setOnClickListener {
-            if (validateFields()) {
+            if (validateFields(dialog, actvProducts, spinner, etAmount)) {
                 val newProd = Product(
                     actvProducts.text.toString(),
                     etAmount.text.toString().toInt(),
@@ -139,7 +139,20 @@ class MyProductsFragment : Fragment() {
         return spinner
     }
 
-    private fun validateFields(): Boolean {
+    private fun validateFields(
+        dialog: Dialog,
+        actvProducts: AutoCompleteTextView,
+        spinner: Spinner,
+        etAmount: EditText
+    ): Boolean {
+        if(actvProducts.text.isEmpty()) {
+
+            return false
+        }
+        if(etAmount.text.isEmpty()){
+
+            return false
+        }
         return true
     }
 }
