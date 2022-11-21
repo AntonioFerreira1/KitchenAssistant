@@ -1,13 +1,13 @@
 package com.example.kitchenassistant.ui.myProducts
 
 import android.R
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Spinner
+import android.view.Window
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +15,7 @@ import com.example.kitchenassistant.databinding.FragmentMyProductsBinding
 import com.example.kitchenassistant.ui.Product
 import com.example.kitchenassistant.ui.Unit
 import java.util.*
+import com.example.kitchenassistant.R as R1
 
 
 class MyProductsFragment : Fragment() {
@@ -39,9 +40,8 @@ class MyProductsFragment : Fragment() {
         )
 
         setUpRecycleView()
-        setupSVAddMenu()
         binding.btAddProduct.setOnClickListener {
-            binding.llAddProductMenu.visibility = View.VISIBLE
+            showAddProductDialog()
         }
 
         return root
@@ -51,6 +51,7 @@ class MyProductsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 
     private fun setUpRecycleView() {
         rvProductsAdapter = ProductsAdapter(allProducts)
@@ -80,46 +81,54 @@ class MyProductsFragment : Fragment() {
         })
     }
 
-    private fun setupSVAddMenu() {
-        val unitSpinner = setupSpinner()
-        val productACTV = setupProductSelector()
-        val amountET = binding.etAmount
+    private fun showAddProductDialog() {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R1.layout.custom_dialog)
 
-        binding.btConfirm.setOnClickListener {
-            unitSpinner.selectedItem
-            productACTV.text
+        val actvProduct = dialog.findViewById<AutoCompleteTextView>(R1.id.actv_products)
+        val spinner = dialog.findViewById<Spinner>(R1.id.sp_unitType)
+        val etAmount = dialog.findViewById<EditText>(R1.id.et_Amount)
 
+
+        setupProductSelector(actvProduct)
+        setupSpinner(spinner)
+        setupDialogButtons(dialog, actvProduct, spinner, etAmount)
+
+        dialog.show()
+    }
+
+    private fun setupDialogButtons(
+        dialog: Dialog, actvProducts: AutoCompleteTextView, spinner: Spinner, etAmount: EditText
+    ) {
+        dialog.findViewById<Button>(R1.id.bt_confirm).setOnClickListener {
             if (validateFields()) {
                 val newProd = Product(
-                    productACTV.text.toString(),
-                    amountET.text.toString().toInt(),
-                    Unit.valueOf(unitSpinner.selectedItem.toString())
+                    actvProducts.text.toString(),
+                    etAmount.text.toString().toInt(),
+                    Unit.valueOf(spinner.selectedItem.toString())
                 )
                 rvProductsAdapter.addProduct(newProd)
+                dialog.dismiss()
             }
-
         }
 
-        binding.btCancel.setOnClickListener {
-            binding.llAddProductMenu.visibility = View.GONE
-            binding.actvProducts.text.clear()
-            binding.etAmount.text.clear()
-            //binding.spUnitType
+        dialog.findViewById<Button>(R1.id.bt_Cancel).setOnClickListener {
+            dialog.dismiss()
         }
     }
 
-    private fun setupProductSelector(): AutoCompleteTextView {
+    private fun setupProductSelector(actvProduct: AutoCompleteTextView) {
         val languages = arrayOf("C", "C++", "Java", "C#", "PHP", "AJAX", "JSON")
 
         val adapter = ArrayAdapter<String>(requireContext(), R.layout.select_dialog_item, languages)
 
-        binding.actvProducts.threshold = 1
-        binding.actvProducts.setAdapter(adapter)
-        return binding.actvProducts
+        actvProduct.threshold = 1
+        actvProduct.setAdapter(adapter)
     }
 
-    private fun setupSpinner(): Spinner {
-        val spinner = binding.spUnitType
+    private fun setupSpinner(spinner: Spinner): Spinner {
         val spinnerItems = Unit.values().map { u -> u.name }
         val adapter = ArrayAdapter(
             requireContext(), R.layout.simple_spinner_dropdown_item, spinnerItems
