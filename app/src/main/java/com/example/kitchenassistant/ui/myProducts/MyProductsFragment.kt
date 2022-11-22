@@ -40,7 +40,7 @@ class MyProductsFragment : Fragment() {
         )
 
         setUpRecycleView()
-        binding.btAddProduct.setOnClickListener {
+        binding.fabAddProdutct.setOnClickListener {
             showAddProductDialog()
         }
 
@@ -55,7 +55,7 @@ class MyProductsFragment : Fragment() {
 
     private fun setUpRecycleView() {
         rvProductsAdapter = ProductsAdapter(allProducts)
-        rvProducts = binding.recyclerView
+        rvProducts = binding.rvProducts
 
         rvProducts.adapter = rvProductsAdapter
         rvProducts.layoutManager = LinearLayoutManager(context)

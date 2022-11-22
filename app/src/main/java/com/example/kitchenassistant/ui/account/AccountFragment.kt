@@ -33,6 +33,14 @@ class AccountFragment : Fragment() {
             startActivity(Intent(requireContext(), LoginActivity::class.java))
         }
 
+        binding.products.setOnClickListener {
+            startActivity(Intent(requireContext(), MainActivity::class.java))
+        }
+
+        binding.recipes.setOnClickListener {
+            startActivity(Intent(requireContext(), MainActivity::class.java))
+        }
+
         return root
     }
 

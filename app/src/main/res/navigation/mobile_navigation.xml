@@ -15,7 +15,7 @@
         android:id="@+id/navigation_myRecipes"
         android:name="com.example.kitchenassistant.ui.myRecipes.MyRecipesFragment"
         android:label="@string/title_myRecipes"
-        tools:layout="@layout/fragment_my_products" />
+        tools:layout="@layout/fragment_my_products2" />
 
     <fragment
         android:id="@id/navigation_myProducts"
