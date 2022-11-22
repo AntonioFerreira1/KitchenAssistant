@@ -71,7 +71,7 @@
                     android:paddingBottom="5dp"
                     android:text="Sign Up"
                     android:textAlignment="center"
-                    android:textColor="@color/pinkColor"
+                    android:textColor="@color/greenColor"
                     android:textSize="16sp"
                     android:textStyle="bold|normal" />
 
@@ -247,7 +247,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/textColor"
                 android:textSize="17sp"
-                app:backgroundTint="@color/pinkColor"
+                app:backgroundTint="@color/greenColor"
                 app:shapeAppearanceOverlay="@style/Button5" />
 
             <TextView
