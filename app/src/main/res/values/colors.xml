@@ -16,8 +16,9 @@
 
 
     <color name="textColor">#ECE5EC</color>
-    <color name="pinkColor">#097969</color>
+    <color name="greenColor">#097969</color>
     <color name="tansparentColor">#00FFFFFF</color>
+    <color name="lightGreen">#50C878</color>
 
 
 </resources>

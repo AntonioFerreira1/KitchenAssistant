@@ -33,13 +33,13 @@ class LoginActivity : AppCompatActivity() {
             signUpLayout.visibility = View.VISIBLE
             logInLayout.visibility = View.GONE
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                logIn.setTextColor(resources.getColor(R.color.pinkColor, null))
+                logIn.setTextColor(resources.getColor(R.color.greenColor, null))
             }
         }
         logIn.setOnClickListener {
             signUp.background = null
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                signUp.setTextColor(resources.getColor(R.color.pinkColor, null))
+                signUp.setTextColor(resources.getColor(R.color.greenColor, null))
             }
             logIn.background = resources.getDrawable(R.drawable.switch_trcks, null)
             signUpLayout.visibility = View.GONE

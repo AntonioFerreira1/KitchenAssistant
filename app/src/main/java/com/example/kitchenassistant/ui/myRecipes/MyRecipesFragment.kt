@@ -36,7 +36,7 @@ class MyRecipesFragment : Fragment() {
         /*val textView: TextView = binding.textDashboard
         dashboardViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
-        }*/
+        }*//*
 
         binding.profilePic.setOnClickListener(View.OnClickListener {
             startActivity(
@@ -72,7 +72,7 @@ class MyRecipesFragment : Fragment() {
                     tiramisuActivity::class.java
                 )
             )
-        })
+        })*/
 
         return root
     }
