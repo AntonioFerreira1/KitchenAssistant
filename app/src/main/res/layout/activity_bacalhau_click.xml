@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BacalhauClickActivity">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/a"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/scode_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/profile_image"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:text="" />
+
+    <RelativeLayout
+        android:id="@+id/relative_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        android:layout_below="@+id/scode_profile"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingredients"
+                android:textSize="26sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/name_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="\n\n▶1 pound dried salt cod soaked overnight and cooked \n\n▶7 tablespoons olive oil divided \n\n▶1 1/2 pounds russet potatoes peeled, cut into matchstick-size strips (about 6 cups) \n\n▶1 large onion thinly sliced"
+                android:textSize="16sp"
+                android:layout_marginStart="30dp"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relative_name"
+        android:paddingVertical="10dp">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:textAlignment="viewStart">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Steps"
+                android:textSize="26sp"
+                android:textColor="@color/black"/>
+
+
+            <ScrollView
+                android:id="@+id/SCROLLER_ID"
+                android:layout_width="wrap_content"
+                android:layout_height="106dp"
+                android:fillViewport="true"
+                android:scrollbars="vertical">
+
+
+                <TextView
+                    android:id="@+id/phone_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="\n1 ▶Flake the fish, discarding any bones.\n\n2 ▶Heat 4 tablespoons of the oil in a heavy, large nonstick skillet over medium-high heat. Add the potatoes in batches and saute until crisp and golden, about 7 minutes per batch. Transfer the potatoes to paper towels to drain.\n\n3 ▶Add 1 tablespoon of the oil to the same skillet. Add the onion and bay leaf and saute until golden, about 15 minutes. Discard the bay leaf.\n\n4 ▶Reduce the heat to low. Add the remaining 2 tablespoons oil to the onion slices in the skillet. Mix in the fish and potatoes.\n\n5 ▶Whisk the eggs, the 1/2 teaspoon salt, and the 1/2 teaspoon pepper in a large bowl to blend. Add the egg mixture and 3 tablespoons of the parsley to the fish mixture in the skillet. Cook over medium heat until the eggs are softly set, stirring occasionally, about 3 minutes. "
+                    android:textAlignment="textStart"
+
+                    android:textSize="16sp" />
+
+            </ScrollView>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_below="@+id/relative_phone"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        />
+
+    <View
+        android:layout_below="@+id/relative_name"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        />
+
+
+
+</RelativeLayout>
