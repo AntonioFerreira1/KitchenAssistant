@@ -16,7 +16,7 @@ class ProductsAdapter(
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tv_title: TextView = itemView.findViewById<TextView>(R.id.tv_productTitle)
         val tv_quantity: TextView = itemView.findViewById<TextView>(R.id.tv_productQuantity)
-        val bt_editQuantity = itemView.findViewById<Button>(R.id.bt_editQuantity)
+        //val bt_editQuantity = itemView.findViewById<Button>(R.id.bt_editQuantity)
         val bt_deleteProduct = itemView.findViewById<Button>(R.id.bt_deleteProduct)
     }
 
@@ -34,7 +34,7 @@ class ProductsAdapter(
         holder.tv_quantity.text = curProduct.quantity.toString()
 
         holder.bt_deleteProduct.setOnClickListener {
-            this.deleteProduct(curProduct)
+            this.deleteProduct(position)
         }
     }
 
@@ -52,8 +52,9 @@ class ProductsAdapter(
         notifyItemInserted(products.size - 1)
     }
 
-    private fun deleteProduct(product: Product) {
-        if (products.remove(product)) notifyDataSetChanged()
+    fun deleteProduct(position: Int) {
+        products.removeAt(position)
+        notifyItemRemoved(position)
     }
 
 

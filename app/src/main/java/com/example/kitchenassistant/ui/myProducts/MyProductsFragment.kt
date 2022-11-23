@@ -9,11 +9,13 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kitchenassistant.databinding.FragmentMyProductsBinding
 import com.example.kitchenassistant.ui.Product
 import com.example.kitchenassistant.ui.Unit
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
 import com.example.kitchenassistant.R as R1
 
@@ -21,9 +23,10 @@ import com.example.kitchenassistant.R as R1
 class MyProductsFragment : Fragment() {
 
     private var _binding: FragmentMyProductsBinding? = null
-    private lateinit var allProducts: MutableList<Product>
+    private lateinit var products: MutableList<Product>
     private lateinit var rvProducts: RecyclerView
     private lateinit var rvProductsAdapter: ProductsAdapter
+    private lateinit var deletedProduct: Product
 
 
     // This property is only valid between onCreateView and
@@ -35,7 +38,7 @@ class MyProductsFragment : Fragment() {
     ): View {
         _binding = FragmentMyProductsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        allProducts = mutableListOf(
+        products = mutableListOf(
             Product("carne", 1, Unit.KILOGRAM), Product("peixe", 2, Unit.KILOGRAM)
         )
 
@@ -43,6 +46,8 @@ class MyProductsFragment : Fragment() {
         binding.fabAddProdutct.setOnClickListener {
             showAddProductDialog()
         }
+
+
 
         return root
     }
@@ -54,7 +59,7 @@ class MyProductsFragment : Fragment() {
 
 
     private fun setUpRecycleView() {
-        rvProductsAdapter = ProductsAdapter(allProducts)
+        rvProductsAdapter = ProductsAdapter(products)
         rvProducts = binding.rvProducts
 
         rvProducts.adapter = rvProductsAdapter
@@ -70,7 +75,7 @@ class MyProductsFragment : Fragment() {
 
             override fun onQueryTextChange(p0: String?): Boolean {
                 if (p0 != null) {
-                    val filteredList = allProducts.filter { p ->
+                    val filteredList = products.filter { p ->
                         p.title.lowercase(Locale.ROOT).contains(p0.lowercase(Locale.ROOT))
                     } as MutableList<Product>
 
@@ -79,6 +84,45 @@ class MyProductsFragment : Fragment() {
                 return false
             }
         })
+
+        ItemTouchHelper(simpleCallback).attachToRecyclerView(rvProducts)
+
+    }
+
+    private var simpleCallback = object : ItemTouchHelper.SimpleCallback(
+        ItemTouchHelper.UP or ItemTouchHelper.DOWN, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+    ) {
+        override fun onMove(
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder,
+            target: RecyclerView.ViewHolder
+        ): Boolean {
+            val startPosition = viewHolder.adapterPosition
+            val endPosition = target.adapterPosition
+
+            Collections.swap(products, startPosition, endPosition)
+            recyclerView.adapter?.notifyItemMoved(startPosition, endPosition)
+            return true
+        }
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            val position = viewHolder.adapterPosition
+
+            when (direction) {
+                ItemTouchHelper.LEFT -> {
+                    deletedProduct = products.get(position)
+                    rvProductsAdapter.deleteProduct(position)
+
+                    Snackbar.make(
+                        rvProducts, "ola", Snackbar.LENGTH_LONG
+                    ).setAction("Undo", View.OnClickListener {
+                        products.add(position, deletedProduct)
+                        rvProducts.adapter?.notifyItemInserted(position)
+                    }).show()
+                }
+            }
+        }
+
     }
 
     private fun showAddProductDialog() {
@@ -140,16 +184,13 @@ class MyProductsFragment : Fragment() {
     }
 
     private fun validateFields(
-        dialog: Dialog,
-        actvProducts: AutoCompleteTextView,
-        spinner: Spinner,
-        etAmount: EditText
+        dialog: Dialog, actvProducts: AutoCompleteTextView, spinner: Spinner, etAmount: EditText
     ): Boolean {
-        if(actvProducts.text.isEmpty()) {
+        if (actvProducts.text.isEmpty()) {
 
             return false
         }
-        if(etAmount.text.isEmpty()){
+        if (etAmount.text.isEmpty()) {
 
             return false
         }
