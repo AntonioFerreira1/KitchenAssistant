@@ -9,3 +9,9 @@ data class Product(
 enum class Unit {
     GRAMS, KILOGRAM, UNIT, PACKAGE, LITERS, MILLILITERS
 }
+
+data class Recipe(
+    val title: String,
+    val category: String,
+    val duration: Int
+)
