@@ -15,18 +15,18 @@
         android:id="@+id/navigation_myRecipes"
         android:name="com.example.kitchenassistant.ui.myRecipes.MyRecipesFragment"
         android:label="@string/title_myRecipes"
-        tools:layout="@layout/fragment_my_products2" />
+        tools:layout="@layout/fragment_my_recipes" />
 
     <fragment
         android:id="@id/navigation_myProducts"
         android:name="com.example.kitchenassistant.ui.myProducts.MyProductsFragment"
         android:label="@string/title_myProducts"
-        tools:layout="@layout/fragment_account"/>
+        tools:layout="@layout/fragment_my_products"/>
 
     <fragment
         android:id="@+id/navigation_account"
         android:name="com.example.kitchenassistant.ui.account.AccountFragment"
         android:label="@string/title_account"
-        tools:layout="@layout/fragment_my_recipes" />
+        tools:layout="@layout/fragment_account" />
 
 </navigation>

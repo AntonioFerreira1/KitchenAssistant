@@ -58,12 +58,12 @@ class MyProductsFragment : Fragment() {
 
     private fun setUpRecycleView() {
         rvProductsAdapter = ProductsAdapter(products)
-        rvProducts = binding.rvProducts
+        rvProducts = binding.rvMyProducts
 
         rvProducts.adapter = rvProductsAdapter
         rvProducts.layoutManager = LinearLayoutManager(context)
 
-        val sv = binding.svMyProducts
+        val sv = binding.svMyProducs
         sv.clearFocus()
         sv.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {

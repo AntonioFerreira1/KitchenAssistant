@@ -20,11 +20,11 @@ class HomeFragment : Fragment() {
 
     private lateinit var recommended: List<Recipe>
     private lateinit var rv_recommended: RecyclerView
-    private lateinit var recommendedAdapter: RecipesAdapter
+    private lateinit var recommendedAdapter: HomeAdapter
 
     private lateinit var popular: List<Recipe>
     private lateinit var rv_popular: RecyclerView
-    private lateinit var popularAdapter: RecipesAdapter
+    private lateinit var popularAdapter: HomeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
         recommended = aux
 
         rv_recommended = binding.rvRecommended
-        recommendedAdapter = RecipesAdapter(recommended)
+        recommendedAdapter = HomeAdapter(recommended)
         rv_recommended.adapter = recommendedAdapter
         rv_recommended.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -71,7 +71,7 @@ class HomeFragment : Fragment() {
         popular = aux
 
         rv_popular = binding.rvPopular
-        popularAdapter = RecipesAdapter(popular)
+        popularAdapter = HomeAdapter(popular)
         rv_popular.adapter = popularAdapter
         rv_popular.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
