@@ -12,34 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KitchenAssistant"
         tools:targetApi="31">
-        <activity
-            android:name=".tiramisuActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ui.myRecipes.PizzaActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".BacalhauClickActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".carbonaraActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".RecipeActivity" />
         <activity

@@ -6,24 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kitchenassistant.R
-import com.example.kitchenassistant.ui.Recipe
 import com.example.kitchenassistant.RecipeActivity
+import com.example.kitchenassistant.ui.Recipe
 
 class MyRecipesAdapter(
     var recipes: MutableList<Recipe>
 ) : RecyclerView.Adapter<MyRecipesAdapter.RecipesViewHolder>() {
 
-    class RecipesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class RecipesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tv_title: TextView = itemView.findViewById(R.id.tv_mr_title)
         val tv_duration: TextView = itemView.findViewById(R.id.tv_mr_duration)
         val tv_category: TextView = itemView.findViewById(R.id.tv_mr_category)
         val iv_image: ImageView = itemView.findViewById(R.id.iv_mr_img)
 
         val context = itemView.context
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesViewHolder {
@@ -41,18 +40,27 @@ class MyRecipesAdapter(
         holder.tv_duration.text = StringBuilder().append(recipe.duration).append(" min").toString()
         holder.tv_category.text = recipe.category
 
+        val id = holder.context.resources.getIdentifier(
+            recipe.img,
+            "drawable",
+            holder.context.packageName
+        )
+        val img = ActivityCompat.getDrawable(holder.context, id)
+        holder.iv_image.setImageDrawable(img)
+
         holder.itemView.setOnClickListener(View.OnClickListener {
-            println("AJSAOPSASAS")
             val intent = Intent(it.context, RecipeActivity::class.java)
 
             intent.putExtra("title", recipe.title)
             intent.putExtra("category", recipe.category)
             intent.putExtra("duration", recipe.duration.toString())
+            intent.putExtra("ingredients", recipe.ingredients)
+            intent.putExtra("steps", recipe.steps)
+            intent.putExtra("img", recipe.img)
+
 
             it.context.startActivity(intent)
         })
-
-
     }
 
 

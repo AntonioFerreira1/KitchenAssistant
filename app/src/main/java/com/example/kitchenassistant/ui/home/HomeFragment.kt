@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kitchenassistant.databinding.FragmentHomeBinding
 import com.example.kitchenassistant.ui.Recipe
+import com.example.kitchenassistant.ui.allRecipes
 
 class HomeFragment : Fragment() {
 
@@ -29,15 +30,11 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         setupRecommended()
         setupPopular()
-
-
 
         return root
     }
@@ -50,8 +47,9 @@ class HomeFragment : Fragment() {
 
     private fun setupRecommended() {
         val aux = ArrayList<Recipe>()
-        for (i in 10 downTo 1) {
-            aux.add(Recipe("RECIPE$i", "CATEGORY", i * 10))
+        var i = 0
+        while (i < 10) {
+            for (r in allRecipes) if (aux.add(r)) i++
         }
         recommended = aux
 
@@ -65,9 +63,11 @@ class HomeFragment : Fragment() {
 
     private fun setupPopular() {
         val aux = ArrayList<Recipe>()
-        for (i in 20 downTo 11) {
-            aux.add(Recipe("RECIPE$i", "CATEGORY", i * 10))
+        var i = 0
+        while (i < 10) {
+            for (r in allRecipes) if (aux.add(r)) i++
         }
+
         popular = aux
 
         rv_popular = binding.rvPopular

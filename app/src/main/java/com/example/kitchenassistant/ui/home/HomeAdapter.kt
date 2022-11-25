@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kitchenassistant.R
 import com.example.kitchenassistant.ui.Recipe
@@ -20,6 +21,7 @@ class HomeAdapter(
         val tv_duration: TextView = itemView.findViewById(R.id.tv_duration)
         val tv_category: TextView = itemView.findViewById(R.id.tv_category)
         val iv_image: ImageView = itemView.findViewById(R.id.iv_recipeImg)
+        val context = itemView.context
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesViewHolder {
@@ -36,6 +38,10 @@ class HomeAdapter(
         holder.tv_title.text = recipe.title
         holder.tv_duration.text = duration
         holder.tv_category.text = recipe.category
+
+        val id = holder.context.resources.getIdentifier(recipe.img, "drawable", holder.context.packageName)
+        val img = ActivityCompat.getDrawable(holder.context, id)
+        holder.iv_image.setImageDrawable(img)
     }
 
     override fun getItemCount(): Int {

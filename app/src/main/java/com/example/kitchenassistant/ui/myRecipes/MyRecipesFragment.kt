@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kitchenassistant.databinding.FragmentMyRecipesBinding
 import com.example.kitchenassistant.ui.Recipe
+import com.example.kitchenassistant.ui.allRecipes
 import java.util.*
 
 
@@ -45,11 +46,13 @@ class MyRecipesFragment : Fragment() {
     }
 
     private fun setUpRecycleView() {
-        val recipes = ArrayList<Recipe>(50)
-        for (i in 1 ..10){
-            recipes.add(Recipe("RECIPE$i", "CATEGORY", i * 10))
-            println(i)
+        val aux = ArrayList<Recipe>()
+        var i = 0
+        while (i < 10) {
+            for (r in allRecipes) if (aux.add(r)) i++
         }
+
+        recipes = aux
 
         rvRecipes = binding.rvMyRecipes
         rvRecipesAdapter = MyRecipesAdapter(recipes)

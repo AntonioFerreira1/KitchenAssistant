@@ -24,21 +24,22 @@
                 android:id="@+id/tv_r_duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:layout_marginTop="24dp"
+                android:text="1h 25min"
                 android:textColor="@color/white"
                 android:textSize="22sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                 app:layout_constraintEnd_toEndOf="@+id/tv_r_category"
-                app:layout_constraintStart_toStartOf="@+id/tv_r_category" />
+                app:layout_constraintStart_toStartOf="@+id/tv_r_category"
+                app:layout_constraintTop_toBottomOf="@+id/tv_r_category" />
 
             <TextView
                 android:id="@+id/tv_r_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:layout_marginTop="24dp"
+                android:text="Pasta"
                 android:textColor="@color/white"
                 android:textSize="22sp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_r_duration"
                 app:layout_constraintEnd_toEndOf="@+id/tv_r_title"
                 app:layout_constraintStart_toStartOf="@+id/tv_r_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_r_title" />
@@ -48,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                android:text="TextView"
+                android:text="Ravioli Lasagna"
                 android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -56,16 +57,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imageView3"
                 android:layout_width="175dp"
                 android:layout_height="175dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                app:strokeColor="@color/white"
+                app:strokeWidth="3dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_facebook" />
+                app:srcCompat="@drawable/ravioli" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -100,10 +104,19 @@
                 android:id="@+id/tv_ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="16dp"
-                android:text="TextView"
-                android:textSize="22sp"
+                android:justificationMode="inter_word"
+                android:text=" 2 tablespoons olive oil\n
+1 sweet onion, diced\n
+2 garlic cloves, minced\n
+1 pound ground beef\n
+1 teaspoon dried oregano\n
+1½ cups marinara sauce\n
+2 pounds ravioli\n
+1½ cups ricotta cheese\n
+2 cups shredded mozzarella cheese"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView20" />
@@ -115,6 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
@@ -125,9 +139,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="TextView"
-                android:textSize="22sp"
+                android:justificationMode="inter_word"
+                android:paddingBottom="20dp"
+                android:text="1. Preheat the oven to 375°F \n2. In a large skillet, heat the olive oil over medium heat. Add the onion and sauté until translucent, 4 to 5 minutes. Add the garlic and cook until fragrant, 1 minute more.  \n3. Add the ground beef and sauté until fully cooked, 6 to 8 minutes. Season with the salt, pepper and oregano.  \n4. Stir in the marinara sauce and bring to a simmer over medium-low heat. Simmer until the sauce thickens slightly and has good flavor, 20 minutes.  \n5. While the sauce cooks, bring a large pot of salted water to a boil. When it comes to a rolling boil, add the ravioli and cook according to the instructions on the package. Drain well.  \n6. To build the lasagna, place a layer of ravioli in the base of the pan. Ladle a quarter of the sauce over the ravioli, then top with ½ cup ricotta cheese, spread into a layer. Sprinkle with a ¼ cup mozzarella.  \n7. Repeat the layering process two more times. For the fourth and final layer, add one more layer of ravioli, sauce and mozzarella (no ricotta this time)."
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
