@@ -1,6 +1,7 @@
 package com.example.kitchenassistant.ui.myProducts
 
 import android.R
+import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -65,8 +66,7 @@ class MyProductsFragment : Fragment() {
 
         val sv = binding.svMyProducts
         sv.clearFocus()
-        sv.setOnQueryTextListener(object :
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+        sv.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 return false
             }
@@ -124,7 +124,7 @@ class MyProductsFragment : Fragment() {
     }
 
     private fun showAddProductDialog() {
-        val dialog = Dialog(requireContext())
+        /*val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
         dialog.setContentView(R1.layout.custom_dialog)
@@ -139,6 +139,13 @@ class MyProductsFragment : Fragment() {
         setupDialogButtons(dialog, actvProduct, spinner, etAmount)
 
         dialog.show()
+*/
+
+        val builder = AlertDialog.Builder(activity)
+        val inflater = requireActivity().layoutInflater;
+
+        builder.setView(inflater.inflate(R1.layout.custom_dialog, null))
+        builder.create()
     }
 
     private fun setupDialogButtons(
@@ -162,9 +169,9 @@ class MyProductsFragment : Fragment() {
     }
 
     private fun setupProductSelector(actvProduct: AutoCompleteTextView) {
-        val languages = arrayOf("C", "C++", "Java", "C#", "PHP", "AJAX", "JSON")
+        val products = arrayOf("C", "C++", "Java", "C#", "PHP", "AJAX", "JSON")
 
-        val adapter = ArrayAdapter<String>(requireContext(), R.layout.select_dialog_item, languages)
+        val adapter = ArrayAdapter<String>(requireContext(), R.layout.select_dialog_item, products)
 
         actvProduct.threshold = 1
         actvProduct.setAdapter(adapter)
@@ -184,14 +191,8 @@ class MyProductsFragment : Fragment() {
     private fun validateFields(
         dialog: Dialog, actvProducts: AutoCompleteTextView, spinner: Spinner, etAmount: EditText
     ): Boolean {
-        if (actvProducts.text.isEmpty()) {
-
-            return false
-        }
-        if (etAmount.text.isEmpty()) {
-
-            return false
-        }
+        if (actvProducts.text.isEmpty()) return false
+        if (etAmount.text.isEmpty()) return false
         return true
     }
 }
