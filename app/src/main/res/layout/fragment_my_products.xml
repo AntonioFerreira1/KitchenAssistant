@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#F5F5F5">
+
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,7 +61,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView10">
 
                 <androidx.appcompat.widget.SearchView
-                    android:id="@+id/sv_myProducs"
+                    android:id="@+id/sv_myProducts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
@@ -92,20 +93,20 @@
                     android:layout_margin="20dp" />
 
             </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_AddProdutct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="50dp"
-            android:layout_marginBottom="50dp"
-            android:backgroundTint="@color/greenColor"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_add"/>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_addProduct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
+                android:clickable="true"
+                app:backgroundTint="@color/greenColor"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+                app:srcCompat="@android:drawable/ic_menu_add" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

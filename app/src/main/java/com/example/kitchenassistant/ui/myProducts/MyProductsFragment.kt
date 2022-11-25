@@ -43,7 +43,7 @@ class MyProductsFragment : Fragment() {
         )
 
         setUpRecycleView()
-        binding.fabAddProdutct.setOnClickListener {
+        binding.fabAddProduct.setOnClickListener {
             showAddProductDialog()
         }
 
@@ -63,7 +63,7 @@ class MyProductsFragment : Fragment() {
         rvProducts.adapter = rvProductsAdapter
         rvProducts.layoutManager = LinearLayoutManager(context)
 
-        val sv = binding.svMyProducs
+        val sv = binding.svMyProducts
         sv.clearFocus()
         sv.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
