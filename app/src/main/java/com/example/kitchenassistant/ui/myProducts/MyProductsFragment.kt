@@ -1,7 +1,7 @@
 package com.example.kitchenassistant.ui.myProducts
 
 import android.R
-import android.app.AlertDialog
+import android.app.ActionBar
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kitchenassistant.databinding.FragmentMyProductsBinding
 import com.example.kitchenassistant.ui.Product
 import com.example.kitchenassistant.ui.Unit
+import com.example.kitchenassistant.ui.allProds
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
 import com.example.kitchenassistant.R as R1
@@ -108,7 +109,7 @@ class MyProductsFragment : Fragment() {
 
             when (direction) {
                 ItemTouchHelper.LEFT -> {
-                    deletedProduct = products.get(position)
+                    deletedProduct = products[position]
                     rvProductsAdapter.deleteProduct(position)
 
                     Snackbar.make(
@@ -124,10 +125,14 @@ class MyProductsFragment : Fragment() {
     }
 
     private fun showAddProductDialog() {
-        /*val dialog = Dialog(requireContext())
+        val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
         dialog.setContentView(R1.layout.custom_dialog)
+        dialog.setTitle("Add Product")
+        dialog.window?.setLayout(
+            ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT
+        )
 
         val actvProduct = dialog.findViewById<AutoCompleteTextView>(R1.id.actv_products)
         val spinner = dialog.findViewById<Spinner>(R1.id.sp_unitType)
@@ -139,13 +144,6 @@ class MyProductsFragment : Fragment() {
         setupDialogButtons(dialog, actvProduct, spinner, etAmount)
 
         dialog.show()
-*/
-
-        val builder = AlertDialog.Builder(activity)
-        val inflater = requireActivity().layoutInflater;
-
-        builder.setView(inflater.inflate(R1.layout.custom_dialog, null))
-        builder.create()
     }
 
     private fun setupDialogButtons(
@@ -169,9 +167,8 @@ class MyProductsFragment : Fragment() {
     }
 
     private fun setupProductSelector(actvProduct: AutoCompleteTextView) {
-        val products = arrayOf("C", "C++", "Java", "C#", "PHP", "AJAX", "JSON")
-
-        val adapter = ArrayAdapter<String>(requireContext(), R.layout.select_dialog_item, products)
+        val prods = allProds.map { it.title }
+        val adapter = ArrayAdapter<String>(requireContext(), R.layout.select_dialog_item, prods)
 
         actvProduct.threshold = 1
         actvProduct.setAdapter(adapter)

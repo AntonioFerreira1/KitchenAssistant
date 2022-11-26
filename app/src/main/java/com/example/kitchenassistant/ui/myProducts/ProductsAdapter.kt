@@ -3,7 +3,7 @@ package com.example.kitchenassistant.ui.myProducts
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kitchenassistant.R
@@ -14,10 +14,10 @@ class ProductsAdapter(
 ) : RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>() {
 
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tv_title: TextView = itemView.findViewById<TextView>(R.id.tv_productTitle)
-        val tv_quantity: TextView = itemView.findViewById<TextView>(R.id.tv_productQuantity)
-        //val bt_editQuantity = itemView.findViewById<Button>(R.id.bt_editQuantity)
-        val bt_deleteProduct = itemView.findViewById<Button>(R.id.bt_deleteProduct)
+        val tv_title: TextView = itemView.findViewById(R.id.tv_productTitle)
+        val tv_quantity: TextView = itemView.findViewById(R.id.tv_productQuantity)
+        val bt_editQuantity: ImageView = itemView.findViewById(R.id.iv_editQuantity)
+        val iv_deleteProduct: ImageView = itemView.findViewById(R.id.iv_deleteProduct)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -31,9 +31,12 @@ class ProductsAdapter(
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val curProduct = products[position]
         holder.tv_title.text = curProduct.title
-        holder.tv_quantity.text = curProduct.quantity.toString()
 
-        holder.bt_deleteProduct.setOnClickListener {
+        holder.tv_quantity.text = curProduct.quantity.toString().plus(
+            " ".plus(curProduct.unit.s)
+        )
+
+        holder.iv_deleteProduct.setOnClickListener {
             this.deleteProduct(position)
         }
     }
@@ -42,7 +45,7 @@ class ProductsAdapter(
         return products.size
     }
 
-    fun setFilteredList(filteredList: MutableList<Product>){
+    fun setFilteredList(filteredList: MutableList<Product>) {
         this.products = filteredList
         notifyDataSetChanged()
     }
@@ -56,6 +59,5 @@ class ProductsAdapter(
         products.removeAt(position)
         notifyItemRemoved(position)
     }
-
 
 }

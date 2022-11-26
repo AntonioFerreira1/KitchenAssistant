@@ -3,6 +3,7 @@ package com.example.kitchenassistant
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.google.android.material.imageview.ShapeableImageView
 
 class RecipeActivity : AppCompatActivity() {
@@ -18,13 +19,17 @@ class RecipeActivity : AppCompatActivity() {
         val steps: TextView = findViewById(R.id.tv_steps)
         val img: ShapeableImageView = findViewById(R.id.imageView3)
 
-
         if (b != null) {
             title.text = b.getString("title")
             category.text = b.getString("category")
             duration.text = b.getString("duration")
             ingredients.text = b.getString("ingredients")
             steps.text = b.getString("steps")
+            val id = baseContext.resources.getIdentifier(
+                b.getString("img"), "drawable", baseContext.packageName
+            )
+            val imgSrc = ActivityCompat.getDrawable(baseContext, id)
+            img.setImageDrawable(imgSrc)
         }
     }
 }
