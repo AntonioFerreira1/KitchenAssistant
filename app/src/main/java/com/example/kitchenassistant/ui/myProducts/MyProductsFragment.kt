@@ -41,7 +41,9 @@ class MyProductsFragment : Fragment() {
         _binding = FragmentMyProductsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         products = mutableListOf(
-            Product("carne", 1, Unit.KILOGRAM), Product("peixe", 2, Unit.KILOGRAM)
+            Product(allProds[0].title, 6, Unit.UNIT),
+            Product(allProds[1].title, 2, Unit.PACKAGE),
+            Product(allProds[2].title, 2, Unit.KILOGRAM)
         )
 
         setUpRecycleView()

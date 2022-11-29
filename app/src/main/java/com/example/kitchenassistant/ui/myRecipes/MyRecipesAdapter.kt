@@ -37,13 +37,11 @@ class MyRecipesAdapter(
         val recipe = recipes[position]
 
         holder.tv_title.text = recipe.title
-        holder.tv_duration.text = StringBuilder().append(recipe.duration).append(" min").toString()
+        holder.tv_duration.text = recipe.duration
         holder.tv_category.text = recipe.category
 
         val id = holder.context.resources.getIdentifier(
-            recipe.img,
-            "drawable",
-            holder.context.packageName
+            recipe.img, "drawable", holder.context.packageName
         )
         val img = ActivityCompat.getDrawable(holder.context, id)
         holder.iv_image.setImageDrawable(img)
@@ -53,11 +51,10 @@ class MyRecipesAdapter(
 
             intent.putExtra("title", recipe.title)
             intent.putExtra("category", recipe.category)
-            intent.putExtra("duration", recipe.duration.toString())
+            intent.putExtra("duration", recipe.duration)
             intent.putExtra("ingredients", recipe.ingredients)
             intent.putExtra("steps", recipe.steps)
             intent.putExtra("img", recipe.img)
-
 
             it.context.startActivity(intent)
         })

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KitchenAssistant</string>
+    <string name="app_name">Kitchen Assistant</string>
     <string name="title_home">Home</string>
     <string name="title_myRecipes">MyRecipes</string>
     <string name="title_myProducts">MyProducts</string>

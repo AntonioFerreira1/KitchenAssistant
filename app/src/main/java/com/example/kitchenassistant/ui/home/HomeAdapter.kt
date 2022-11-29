@@ -36,9 +36,9 @@ class HomeAdapter(
 
     override fun onBindViewHolder(holder: RecipesViewHolder, position: Int) {
         val recipe = recipes[position]
-        val duration = StringBuilder().append(recipe.duration).append(" min").toString()
+        //val duration = StringBuilder().append(recipe.duration).append(" min").toString()
         holder.tv_title.text = recipe.title
-        holder.tv_duration.text = duration
+        holder.tv_duration.text = recipe.duration
         holder.tv_category.text = recipe.category
 
         val id = holder.context.resources.getIdentifier(recipe.img, "drawable", holder.context.packageName)
@@ -50,7 +50,7 @@ class HomeAdapter(
 
             intent.putExtra("title", recipe.title)
             intent.putExtra("category", recipe.category)
-            intent.putExtra("duration", recipe.duration.toString())
+            intent.putExtra("duration", recipe.duration)
             intent.putExtra("ingredients", recipe.ingredients)
             intent.putExtra("steps", recipe.steps)
             intent.putExtra("img", recipe.img)
